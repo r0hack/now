@@ -113,24 +113,6 @@ jobs:
           name: Linting Code
           command: yarn test-lint
 
-  test-integration-macos-node-8:
-    macos:
-      xcode: '9.2.0'
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - run:
-          name: Update Node.js
-          command: curl -sfLS install-node.now.sh/8.11 | sh -s -- --yes
-      - run:
-          name: Output version
-          command: node --version
-      - run:
-          name: Running Integration Tests
-          command: yarn test-integration --clean false
-
   test-integration-macos-node-10:
     macos:
       xcode: '10.0.0'
@@ -149,21 +131,6 @@ jobs:
   test-integration-macos-node-12:
     macos:
       xcode: '10.3.0'
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - run:
-          name: Output version
-          command: node --version
-      - run:
-          name: Running Integration Tests
-          command: yarn test-integration --clean false
-
-  test-integration-linux-node-8:
-    docker:
-      - image: circleci/node:8
     working_directory: ~/repo
     steps:
       - checkout
@@ -206,26 +173,6 @@ jobs:
           name: Running Integration Tests
           command: yarn test-integration --clean false
 
-  test-integration-macos-now-dev-node-8:
-    macos:
-      xcode: '9.2.0'
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - run:
-          name: Update Node.js
-          command: curl -sfLS install-node.now.sh/8.11 | sh -s -- --yes
-      - run:
-          name: Output version
-          command: node --version
-      - run:
-          name: Downloading Hugo
-          command: curl -L -O https://github.com/gohugoio/hugo/releases/download/v0.56.0/hugo_0.56.0_macOS-64bit.tar.gz && tar -xzf hugo_0.56.0_macOS-64bit.tar.gz && mv ./hugo packages/now-cli/test/dev/fixtures/08-hugo/
-      - run:
-          name: Running Integration Tests for `now dev`
-          command: yarn test-integration-now-dev --clean false
 
   test-integration-macos-now-dev-node-10:
     macos:
@@ -259,24 +206,6 @@ jobs:
       - run:
           name: Downloading Hugo
           command: curl -L -O https://github.com/gohugoio/hugo/releases/download/v0.56.0/hugo_0.56.0_macOS-64bit.tar.gz && tar -xzf hugo_0.56.0_macOS-64bit.tar.gz && mv ./hugo packages/now-cli/test/dev/fixtures/08-hugo/
-      - run:
-          name: Running Integration Tests for `now dev`
-          command: yarn test-integration-now-dev --clean false
-
-  test-integration-linux-now-dev-node-8:
-    docker:
-      - image: circleci/node:8
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - run:
-          name: Output version
-          command: node --version
-      - run:
-          name: Downloading Hugo
-          command: curl -L -O https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_0.55.6_Linux-64bit.tar.gz && tar -xzf hugo_0.55.6_Linux-64bit.tar.gz && mv ./hugo packages/now-cli/test/dev/fixtures/08-hugo/
       - run:
           name: Running Integration Tests for `now dev`
           command: yarn test-integration-now-dev --clean false
@@ -391,12 +320,6 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - test-integration-macos-node-8:
-          requires:
-            - build
-          filters:
-            tags:
-              only: /.*/
       - test-integration-macos-node-10:
           requires:
             - build
@@ -404,12 +327,6 @@ workflows:
             tags:
               only: /.*/
       - test-integration-macos-node-12:
-          requires:
-            - build
-          filters:
-            tags:
-              only: /.*/
-      - test-integration-linux-node-8:
           requires:
             - build
           filters:
@@ -427,12 +344,6 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - test-integration-macos-now-dev-node-8:
-          requires:
-            - build
-          filters:
-            tags:
-              only: /.*/
       - test-integration-macos-now-dev-node-10:
           requires:
             - build
@@ -440,12 +351,6 @@ workflows:
             tags:
               only: /.*/
       - test-integration-macos-now-dev-node-12:
-          requires:
-            - build
-          filters:
-            tags:
-              only: /.*/
-      - test-integration-linux-now-dev-node-8:
           requires:
             - build
           filters:
@@ -471,16 +376,12 @@ workflows:
               only: /.*/
       - coverage:
           requires:
-            - test-integration-macos-node-8
             - test-integration-macos-node-10
             - test-integration-macos-node-12
-            - test-integration-linux-node-8
             - test-integration-linux-node-10
             - test-integration-linux-node-12
-            - test-integration-macos-now-dev-node-8
             - test-integration-macos-now-dev-node-10
             - test-integration-macos-now-dev-node-12
-            - test-integration-linux-now-dev-node-8
             - test-integration-linux-now-dev-node-10
             - test-integration-linux-now-dev-node-12
             - test-integration-once
