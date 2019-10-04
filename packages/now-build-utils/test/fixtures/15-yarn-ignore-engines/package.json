@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
-    "@google-cloud/scheduler": "0.3.0"
-  }
+    "@google-cloud/scheduler": "0.3.0",
+    "snyk": "^1.230.5"
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
