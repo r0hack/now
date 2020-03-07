@@ -1,7 +1,7 @@
 {
   "name": "fixtures",
   "dependencies": {
-    "gatsby": "2.14.0",
+    "gatsby": "2.16.2",
     "react": "16.9.0",
     "react-dom": "16.9.0"
   },
