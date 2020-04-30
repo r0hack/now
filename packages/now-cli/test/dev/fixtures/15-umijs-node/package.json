@@ -5,7 +5,8 @@
   "dependencies": {
     "antd": "^3.15.2",
     "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+    "react-dom": "^16.8.4",
+    "snyk": "^1.316.1"
   },
   "engines": {
     "node": ">=8.0.0"
@@ -13,7 +14,9 @@
   "scripts": {
     "start": "PORT=$PORT umi dev",
     "build": "umi build",
-    "test": "umi test"
+    "test": "umi test",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "devDependencies": {
     "@types/jest": "^23.3.14",
@@ -41,5 +44,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "snyk": true
 }
