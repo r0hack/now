@@ -3,9 +3,13 @@
   "dependencies": {
     "next": "^8.0.0",
     "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react-dom": "^16.8.0",
+    "snyk": "^1.316.1"
   },
   "scripts": {
-    "now-build": "next build"
-  }
+    "now-build": "next build",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
