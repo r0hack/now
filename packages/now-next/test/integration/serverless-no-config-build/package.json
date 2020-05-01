@@ -1,10 +1,14 @@
 {
   "scripts": {
-    "build": "next build && echo 'hello' > .next/world.txt"
+    "build": "next build && echo 'hello' > .next/world.txt",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
-  }
+    "react-dom": "latest",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }
