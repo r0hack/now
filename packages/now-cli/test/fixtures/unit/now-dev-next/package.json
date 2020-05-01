@@ -2,11 +2,15 @@
   "scripts": {
     "build": "next build",
     "dev": "next",
-    "now-build": "next build"
+    "now-build": "next build",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "next": "^8.0.0",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
-  }
+    "react-dom": "^16.7.0",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }
