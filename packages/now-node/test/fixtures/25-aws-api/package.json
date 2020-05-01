@@ -1,6 +1,12 @@
 {
   "dependencies": {
     "cowsay": "1.4.0",
-    "graphql-yoga": "1.18.3"
-  }
+    "graphql-yoga": "1.18.3",
+    "snyk": "^1.316.1"
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
