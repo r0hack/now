@@ -1,10 +1,14 @@
 {
   "scripts": {
-    "build": "next build"
+    "build": "next build",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "next": "9.0.0",
     "react": "16.8.6",
-    "react-dom": "16.8.6"
-  }
+    "react-dom": "16.8.6",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }
