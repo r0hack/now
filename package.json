@@ -12,7 +12,8 @@
     ]
   },
   "dependencies": {
-    "lerna": "3.16.4"
+    "lerna": "3.16.4",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "2.0.0",
@@ -41,7 +42,9 @@
     "test-integration": "node run.js test-integration",
     "test-integration-once": "node run.js test-integration-once",
     "test-integration-now-dev": "node run.js test-integration-now-dev",
-    "lint": "eslint . --ext .ts,.js"
+    "lint": "eslint . --ext .ts,.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "lint-staged": {
     "*.{js,ts}": [
@@ -58,5 +61,6 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  }
+  },
+  "snyk": true
 }
