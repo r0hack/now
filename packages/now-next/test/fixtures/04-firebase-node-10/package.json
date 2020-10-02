@@ -6,6 +6,6 @@
     "next": "canary",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "firebase": "6.3.4"
+    "firebase": "7.22.0"
   }
 }
