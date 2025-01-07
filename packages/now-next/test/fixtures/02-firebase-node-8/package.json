@@ -3,7 +3,7 @@
     "node": "8.10.x"
   },
   "dependencies": {
-    "next": "canary",
+    "next": "15.1.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "firebase": "6.3.4"
